@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.1.3)
 
 project(GSL CXX)
 
-include(ExternalProject)
-find_package(Git)
+find_package(Catch2 REQUIRED)
 
 # creates a library GSL which is an interface (header files only)
 add_library(GSL INTERFACE)
@@ -70,6 +69,6 @@ install(
 
 option(GSL_TEST "Generate tests." ${GSL_STANDALONE_PROJECT})
 if (GSL_TEST)
-	enable_testing()
-	add_subdirectory(tests)
+    enable_testing()
+    add_subdirectory(tests)
 endif ()
