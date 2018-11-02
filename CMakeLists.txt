@@ -63,9 +63,18 @@ if ((CMAKE_VERSION GREATER 3.7.9) OR (CMAKE_VERSION EQUAL 3.7.9))
 endif()
 
 install(
-    DIRECTORY include/gsl
-    DESTINATION include
+    TARGETS GSL
+    EXPORT gsl-cmake
+    INCLUDES DESTINATION include
 )
+install(
+	EXPORT gsl-cmake
+	FILE gsl-config.cmake
+	NAMESPACE gsl::
+	DESTINATION share/gsl/cmake)
+install(DIRECTORY include/gsl
+        DESTINATION include)
+
 
 option(GSL_TEST "Generate tests." ${GSL_STANDALONE_PROJECT})
 if (GSL_TEST)
